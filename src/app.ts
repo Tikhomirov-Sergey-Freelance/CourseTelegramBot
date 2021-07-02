@@ -1,13 +1,7 @@
-import * as TelegramBot from 'node-telegram-bot-api'
+import mongoConnect from './code/mongo-connect'
+import initBot from './init-bot'
+import initCommands from './init-commands'
 
-import { telegramToken } from './configs/telegram'
-
-const bot = new TelegramBot(telegramToken, {
-    polling: true
-})
-
-bot.on('message', (message, meta) => {
-
-    console.log(message, meta)
-    bot.sendMessage(message.chat.id, `О, привет!!! ${message.from.first_name}`)
-})
+mongoConnect()
+initBot()
+initCommands()

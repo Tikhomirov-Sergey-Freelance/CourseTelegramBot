@@ -107,4 +107,4 @@ dist
 /build
 
 #Уберу токен на всякий 
-src/configs/telegramToken.ts
+src/configs/tokens
