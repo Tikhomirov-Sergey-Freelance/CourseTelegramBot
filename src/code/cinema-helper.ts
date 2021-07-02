@@ -24,8 +24,14 @@ export const filmDescriptionToHtml = (film: iFilm) => {
 
 export const cinemasToHtml = (cinemas: iCinema[]) => {
 
-    const html = cinemas.map((cinema, index) => `<b>${index + 1}</b> ${cinema.name}. <em>Расстояние</em> - <strong>${distanceForHtml(cinema.distance)}</strong> км. - /c${cinema.uuid}`)
+    const html = cinemas.map((cinema, index) => `<b>${index + 1}</b> ${cinema.name}${cinema.distance ? `.<em>Расстояние</em> - <strong>${distanceForHtml(cinema.distance)}</strong>` : ''} - /c${cinema.uuid}`)
     return html.join('\n')
+}
+
+export const cinemaToHtml = (cinema: iCinema) => {
+
+    const html = `Кинотеатр ${cinema.name}`
+    return html 
 }
 
 export const sortCinemasByDistance = (cinemas: iCinema[], location: TelegramBot.Location) => {

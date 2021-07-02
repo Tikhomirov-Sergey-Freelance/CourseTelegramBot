@@ -1,4 +1,5 @@
 import { Schema, Types, model, SchemaTypeOptions } from 'mongoose'
+import Helper from './helper'
 
 export interface iFilm {
 
@@ -13,6 +14,8 @@ export interface iFilm {
     link?: string
     picture?: string
     cinemas: string[]
+
+    isFavorite?: boolean
 }
 
 const FilmSchema = new Schema<iFilm>({
@@ -55,3 +58,4 @@ const FilmSchema = new Schema<iFilm>({
 })
 
 export default model<iFilm>('films', FilmSchema)
+export const FilmHelper = Helper

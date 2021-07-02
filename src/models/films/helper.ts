@@ -1,4 +1,4 @@
-import Shema, { iFilm } from '.'
+import Schema, { iFilm } from '.'
 import { mongooseRequest } from '../../code/mongo-connect'
 
 export default class FilmsHelper {
@@ -6,27 +6,42 @@ export default class FilmsHelper {
     static filmsByQuery(query) {
 
         return mongooseRequest<iFilm[]>(async () => {
-            return Shema.find(query)
+            return Schema.find(query)
         })
     }
 
     static filmById(id) {
 
         return mongooseRequest<iFilm>(async () => {
-            return Shema.findOne({ uuid: id })
+            return Schema.findOne({ uuid: id })
         })
     }
 
     static filmsByType(type) {
 
         return mongooseRequest<iFilm[]>(async () => {
-            return Shema.find({ type })
+            return Schema.find({ type })
         })
     }
 
     static allFilms() {
+
         return mongooseRequest<iFilm[]>(async () => {
-            return Shema.find() 
+            return Schema.find() 
+        })
+    }
+
+    static filmsByIds(ids: string[]) {
+
+        return mongooseRequest<iFilm[]>(async () => {
+            return Schema.find({ uuid: { '$in': ids } })
+        })
+    }
+
+    static filmsByCinemasId(cinemaId: string) {
+
+        return mongooseRequest<iFilm[]>(async () => {
+            return Schema.find({ cinemas: cinemaId })
         })
     }
 }
